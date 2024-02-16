@@ -1,0 +1,62 @@
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const app = express();
+const port = 3000;
+
+
+
+app.use(cors());
+
+
+app.use(bodyParser.json());
+
+
+app.get('/', async(req, res)=>{
+  if(res.status(200)){
+    res.send('<h1>데이터 통신 성공</h>');
+  } else {
+    res.status(404).send('서버 오류')
+  }
+
+})
+
+
+let userInfo = [];
+// id, pass
+app.post('/sign', async(req, res)=>{
+  let user  ={
+    id:"",
+    pass:"",
+  }
+
+  if(req.body.signup){
+
+    user.id = req.body.id;
+    user.pass = req.body.pass;
+    userInfo.push(user);
+
+    console.log("req body 회원 true ",req.body)
+    res.send({result : "회원가입 완료"});
+    
+  } else {
+    userInfo.forEach((i, index)=>{
+      if(i.id == req.body.id && i.pass ==req.body.pass){
+          return(console.log("동일"))
+      } else {
+        user.id = "아이디 오류"
+        user.pass = "비밀번호 오류"
+      }
+    })
+    res.send(`결과${user} `)
+    console.log("userInfo1",userInfo.length )
+  }
+  console.log("userInfo2",userInfo.length )
+})
+console.log("userInfo3",userInfo.length )
+
+
+
+app.listen(port, ()=>{
+  console.log(`http://localhost:${port} 서버 실행` );
+})
