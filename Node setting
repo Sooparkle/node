@@ -1,0 +1,28 @@
+** Node 기본 세팅
+
+node module setting
+1. npm install express
+2. npm install cors
+3. npm install body-paraser
+
+
+
+** Node basic coding Environment
+const express = require("express");
+const cors = requie("cors");
+const bodyParaser = require("body-paraser");
+const app = express();
+const port = 3000;
+
+app.use(cors());
+// paraser의 경우 파싱을 해야하기 때문에 상단위 위치 할 것
+app.use(BodyParaser.json());
+
+app.get('/', async(res, req)=>{
+
+})
+
+app.post('/signup, async(res,req)=>{
+//POST의 경우는 body에 내용이 같이 들어오기 때문에 'body'를 꼭 같이 써줘야 한다.
+console.log("", req.body)
+})
