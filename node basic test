@@ -7,11 +7,11 @@ const port = 3000;
 
 
 app.use(cors());
-
-
 app.use(bodyParser.json());
 
 
+
+// 노트 실행 기본 확인 화면
 app.get('/', async(req, res)=>{
   if(res.status(200)){
     res.send('<h1>데이터 통신 성공</h>');
