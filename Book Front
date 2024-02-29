@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Get Input Value</title>
+  </head>
+  <body>
+    <h1>책 질문 페이지</h1>
+    <input type="text" id="myInput" />
+    <!-- <button type="button" onclick="getInputValue()">Get Value</button> -->
+    <button type="button" id="button">Enter</button>
+    <script>
+      const $btn = document.querySelectorAll("#myInput, #button");
+
+      $btn[1].addEventListener("click", () => {
+        fetchAPI($btn[0].value);
+      });
+
+      const fetchAPI = async (keyword) => {
+        try {
+          console.log("Fecth API has been starts! with", keyword);
+
+          const options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              word: keyword,
+            }),
+          };
+
+          const response = await fetch("http://localhost:3000/naverbooks", options);
+
+          if (!response.ok) {
+            throw new Error(`Naver API failed, ${response.status}`);
+          }
+
+          const data = await response.json();
+          console.log("NAVER API has been successful", data);
+        } catch (e) {
+          console.log(`Error occurs ${e}`);
+        } finally {
+          $btn[1].valeu = "";
+        }
+      };
+
+      // function getInputValue() {
+      //   const inputElement = document.getElementById("myInput");
+      //   const inputValue = inputElement.value;
+      //   alert("The input value is: " + inputValue);
+      //   console.log("test", input)
+      // }
+    </script>
+  </body>
+</html>
+
+
+
