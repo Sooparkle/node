@@ -3,7 +3,7 @@
 node module setting
 1. npm install express
 2. npm install cors
-3. npm install body-paraser
+3. npm install body-paraser ==> 대체 가능
 
 
 
@@ -17,7 +17,7 @@ const port = 3000;
 app.use(cors());
 // paraser의 경우 파싱을 해야하기 때문에 상단위 위치 할 것
 app.use(BodyParaser.json());
-
+// app.use(exporess.json()) ==> body-paraser를 대신 할 수 있음
 app.get('/', async(res, req)=>{
 
 })
